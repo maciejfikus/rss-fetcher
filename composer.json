@@ -1,0 +1,39 @@
+{
+  "name": "maciejfikus/rss-fetcher",
+  "description": "CLI Tool for fetching RSS feed into .csv",
+  "keywords": ["rss", "cli"],
+  "homepage": "https://github.com/maciejfikus/rssfetcher",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maciej Fikus",
+      "email": "maciej.fikus@gmail.com",
+      "homepage": "https://maciejfikus.pl",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "symfony/console": "^4.3",
+    "symfony/dependency-injection": "^4.3",
+    "symfony/config": "^4.3",
+    "ext-json": "*",
+    "ext-simplexml": "*",
+    "ext-libxml": "*",
+    "league/csv": "^9.3"
+  },
+  "require-dev": {
+    "wanfeiyy/dd": "^1.0",
+    "phpunit/phpunit": "^8.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "MaciejFikus\\RSSFetcher\\": ["src"]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\MaciejFikus\\RSSFetcher\\": ["tests"]
+    }
+  }
+}

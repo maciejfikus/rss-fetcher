@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="MaciejFikus\RSSFetcher\Parser\HTMLParserInterface"
+                 class="MaciejFikus\RSSFetcher\Parser\HTMLParser"/>
+
+        <service id="MaciejFikus\RSSFetcher\Parser\DateTimeParserInterface"
+                 class="MaciejFikus\RSSFetcher\Parser\DateTimeParser"/>
+
+        <service id="MaciejFikus\RSSFetcher\Writer\CSVWriter"
+                 class="MaciejFikus\RSSFetcher\Writer\CSVWriter"/>
+
+        <service id="MaciejFikus\RSSFetcher\Writer\CSVExtendedWriter"
+                 class="MaciejFikus\RSSFetcher\Writer\CSVExtendedWriter">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Writer\CSVWriter"/>
+        </service>
+
+        <service id="MaciejFikus\RSSFetcher\Converter\ArticlesConverter">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Parser\HTMLParserInterface"/>
+            <argument type="service" id="MaciejFikus\RSSFetcher\Parser\DateTimeParserInterface"/>
+        </service>
+
+        <service id="MaciejFikus\RSSFetcher\Processor\ArticleProcessor">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Converter\ArticlesConverter"/>
+            <argument type="service" id="MaciejFikus\RSSFetcher\Writer\CSVWriter"/>
+        </service>
+
+        <service id="MaciejFikus\RSSFetcher\Processor\ExtendedArticleProcessor"
+                 class="MaciejFikus\RSSFetcher\Processor\ArticleProcessor">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Converter\ArticlesConverter"/>
+            <argument type="service" id="MaciejFikus\RSSFetcher\Writer\CSVExtendedWriter"/>
+        </service>
+
+        <!-- Commands -->
+
+        <service id="MaciejFikus\RSSFetcher\Command\CSVSimpleCommand" public="true">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Processor\ArticleProcessor"/>
+        </service>
+
+        <service id="MaciejFikus\RSSFetcher\Command\CSVExtendedCommand" public="true">
+            <argument type="service" id="MaciejFikus\RSSFetcher\Processor\ExtendedArticleProcessor"/>
+        </service>
+
+    </services>
+</container>

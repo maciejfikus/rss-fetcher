@@ -1,0 +1,8 @@
+/vendor
+composer.lock
+/.idea
+/storage/*.csv
+.DS_Store
+Thumbs.db
+.php_cs.cache
+.phpunit.result.cache
