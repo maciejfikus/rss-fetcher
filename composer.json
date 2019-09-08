@@ -2,7 +2,7 @@
   "name": "maciejfikus/rss-fetcher",
   "description": "CLI Tool for fetching RSS feed into .csv",
   "keywords": ["rss", "cli"],
-  "homepage": "https://github.com/maciejfikus/rssfetcher",
+  "homepage": "https://github.com/maciejfikus/rss-fetcher",
   "license": "MIT",
   "authors": [
     {
